@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="lihat-back">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back</a>
+</div>
+<section class="lihat-barang">
+    <h2>Daftar Barang</h2>
+    <table class="barang-table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Barang</th>
+                <th scope="col">Jumlah</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in barang %}
+            <tr>
+                <td>{{ b[0] }}</td>
+                <td>{{ b[1] }}</td>
+                <td>{{ b[2] }}</td>
+                <td>{{ b[3] }}</td>
+                <td>
+                    <a href="{{ url_for('edit_barang', id=b[0]) }}" class="edit-link">Edit</a> |
+                    <a href="{{ url_for('hapus_barang', id=b[0]) }}" class="delete-link" onclick="return confirm('Yakin hapus?')">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %} 

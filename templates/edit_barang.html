@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="edit-back">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back</a>
+</div>
+<section class="edit-barang">
+    <h2>Edit Barang</h2>
+    <form method="post">
+        <label for="barang">Barang:</label><br>
+        <input type="text" id="barang" name="barang" value="{{ stock[1] }}" required><br>
+        
+        <label for="jumlah">Jumlah:</label><br>
+        <input type="number" id="jumlah" name="jumlah" value="{{ stock[2] }}" required><br>
+        
+        <label for="harga">Harga:</label><br>
+        <input type="text" id="harga" name="harga" value="{{ stock[3] }}" required><br><br>
+        
+        <button type="submit">Simpan Perubahan</button>
+    </form>
+</section>
+{% endblock %}

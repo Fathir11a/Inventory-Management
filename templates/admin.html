@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="admin-container">
+    <h2>Laporan Inventaris</h2>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th scope="col">Nama Barang</th>
+                <th scope="col">Jumlah Barang</th>
+                <th scope="col">Stok Masuk</th>
+                <th scope="col">Stok Keluar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in laporan %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<div class="menu-section">
+    <div class="admin-category">
+        <h2 class="admin-title">Dashboard Admin</h2>
+        <ul class="menu-list">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard User</a></li>
+            <li><a href="{{ url_for('tambah_barang') }}">Tambah Barang</a></li>
+            <li><a href="{{ url_for('lihat_barang') }}">Lihat / Edit Barang</a></li>
+            <li><a href="{{ url_for('stok_masuk') }}">Stok Masuk</a></li>
+            <li><a href="{{ url_for('stok_keluar') }}">Stok Keluar</a></li>
+            <li><a href="{{ url_for('pengguna') }}">Pengguna</a></li>
+            <li><a href="{{ url_for('admin_report') }}">Report</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="pengguna-back">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back</a>
+</div>
+<section class="pengguna-container">
+    <h2>Daftar Pengguna</h2>
+
+    <table class="pengguna-table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Role</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>
+                    <a href="{{ url_for('edit_pengguna', id=user[0]) }}" class="edit-link">Edit</a> |
+                    <a href="/hapus-pengguna/{{ user[0] }}" onclick="return confirm('Yakin?')">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

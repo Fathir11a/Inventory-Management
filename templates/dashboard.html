@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}Data Barang{% endblock %}
+{% block content %}
+<Div class="dashboard">
+    <h1>Welcome To Inventory Management</h1>
+    <h2>Data Barang</h2>
+
+{% if barang %}
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Barang</th>
+            <th>Jumlah</th>
+        </tr>
+    </thead>
+        <tbody>
+            {% for item in barang %}
+            <tr>
+                <td>{{ item[0] }}</td>  <!-- id -->
+                <td>{{ item[1] }}</td>  <!-- nama_barang -->
+                <td>{{ item[2] }}</td>  <!-- jumlah -->
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+{% else %}
+<p>Data barang tidak tersedia.</p>
+{% endif %}
+</Div>
+<div class="dashboard-container">
+    <h2>Inventory Management</h2>
+    <ul class="dashboard-menu">
+        {% if user_role == 'admin' %}
+        <li><a href="{{ url_for('admin_dashboard') }}">Dashboard Admin</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('input_stok') }}">Input Stok</a></li>
+        <li><a href="{{ url_for('report') }}">Report</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="report-back">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back</a>
+</div>
+<h2>Daftar Laporan Masalah</h2>
+<table class="report-table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Deskripsi</th>
+            <th>Waktu</th>
+            <th>Status</th>
+            <th>Ubah Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in reports %}
+        <tr>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>
+                <form action="/admin/update_status" method="post" class="status-form">
+                    <input type="hidden" name="report_id" value="{{ r['id'] }}">
+                    <select name="status" class="status-select">
+                        <option value="pending" {% if r['status'] == 'pending' %}selected{% endif %}>Pending</option>
+                        <option value="done" {% if r['status'] == 'done' %}selected{% endif %}>Done</option>
+                    </select>
+                    <button type="submit" class="update-button">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

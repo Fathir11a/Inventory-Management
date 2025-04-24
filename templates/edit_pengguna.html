@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="editpengguna-back">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back</a>
+</div>
+<div class="edit-pengguna-container">
+    <h2>Edit Pengguna</h2>
+    <form method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" value="{{ user[1] }}" disabled>
+        </div>
+        <div>
+            <label for="new_password">Password Baru:</label>
+            <input type="password" id="new_password" name="new_password" placeholder="Masukkan password baru">
+        </div>
+        <div>
+            <label for="new_role">Role Baru:</label>
+            <select id="new_role" name="new_role">
+                <option value="admin" {% if user[3] == 'admin' %}selected{% endif %}>Admin</option>
+                <option value="user" {% if user[3] == 'user' %}selected{% endif %}>User </option>
+                <!-- Tambahkan role lain sesuai kebutuhan -->
+            </select>
+        </div>
+        <button type="submit">Simpan Perubahan</button>
+    </form>
+</div>
+{% endblock %}

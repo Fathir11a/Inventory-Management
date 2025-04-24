@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="report-back">
+    <a href="{{ url_for('dashboard') }}" class="btn-back">Back</a>
+</div>
+<form action="/report" method="post" class="report-form">
+    <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+    <fieldset>
+        <legend>Report</legend>
+        <label for="issue">Deskripsi Masalah:</label><br>
+        <textarea id="issue" name="issue" rows="5" cols="30" required></textarea><br><br>
+        <input type="submit" value="Laporkan Masalah" class="submit-button">
+    </fieldset>
+</form>
+{% endblock %}

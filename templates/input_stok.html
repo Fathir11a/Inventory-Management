@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Input Stok</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="stok_back">
+    <a href="{{ url_for('dashboard') }}" class="btn-back">Back</a>
+</div>
+
+
+<div class="input_stok">
+    <h2>Input Stok</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="barang_id">Pilih Barang:</label>
+        <select name="barang_id" required>
+            {% for id, barang in barang_list %}
+                <option value="{{ id }}">{{ barang }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="jumlah">Jumlah:</label>
+        <input type="number" name="jumlah" required><br>
+
+        <!-- Pilihan Stok Masuk atau Keluar -->
+        <label for="tipe">Jenis Transaksi:</label><br>
+        <input type="radio" id="masuk" name="tipe" value="masuk" checked>
+        <label for="masuk">Stok Masuk</label><br>
+        <input type="radio" id="keluar" name="tipe" value="keluar">
+        <label for="keluar">Stok Keluar</label><br>
+
+        <button type="submit">Simpan</button>
+    </form>
+</div>
+
+</body>
+</html>

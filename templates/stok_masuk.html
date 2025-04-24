@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}Stok Masuk{% endblock %}
+
+{% block content %}
+<div class="masuk-back">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back</a>
+</div>
+<section class="stok-masuk">
+    <h2>Data Stok Masuk</h2>
+    {% if data %}
+    <table class="stok-masuk-table">
+        <thead>
+            <tr>
+                <th scope="col">Nama Barang</th>
+                <th scope="col">Jumlah</th>
+                <th scope="col">Tanggal Masuk</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[1] }}</td>  
+                <td>{{ row[2] }}</td>  
+                <td>{{ row[3] }}</td>  
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Tidak ada data stok masuk.</p>
+    {% endif %}
+</section>
+{% endblock %} 
