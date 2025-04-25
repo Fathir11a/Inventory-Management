@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = '20061106'  # untuk session
+app.secret_key = ''  # untuk session
 
 from flask import g
 
@@ -16,7 +16,6 @@ def close_db(exception):
     db = g.pop('db', None)
     if db is not None:
         db.close()
-
 
 def get_user_from_db(username):
     conn = sqlite3.connect('database.db')
